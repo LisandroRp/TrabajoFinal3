@@ -17,9 +17,9 @@ import { infoWebRouter } from "./src/routers/web/InfoWebRouter.js";
 
 import express from 'express'
 import handlebars from 'express-handlebars'
-import session from 'express-session'
+/* import session from 'express-session'
 import sessionFile from 'session-file-store'
-sessionFile(session)
+sessionFile(session) */
 
 import { createServer } from "http"
 import { Server } from "socket.io"
@@ -33,27 +33,23 @@ const app = express();
 //const PORT = args.PORT
 const PORT = 8080
 const httpServer = new createServer(app)
-const io = new Server(httpServer)
-const socket = new Socket(io)
+/* const io = new Server(httpServer)
+const socket = new Socket(io) */
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static('./public'));
 
 //Posicionarlo arriba de las rutas ya que se lo asigna por orden
-app.use(session({
+/* app.use(session({
     store: MongoStore.create({mongoUrl: config.mongodb.cnxStr}),
     secret: 'secreto',
     resave: true,
     rolling: true,
     saveUninitialized: true,
     //cookie: { maxAge: 60000 } // 60 segundos
-}))
+})) */
 
-app.get('/', (req,res) => {
-    console.log('Home');
-    res.json("index");
-})
 /* app.use('/api/products', productRouter);
 app.use('/api/messages', messageRouter);
 app.use('/api/carts', cartRouter);
@@ -69,10 +65,15 @@ const server = httpServer.listen(PORT, async () => {
     console.log(`Servidor Corriendo en el puerto: ${server.address().port}`)
 });
 
-server.on('error', function (e) {
+app.get('/', (req,res) => {
+    console.log('Home');
+    res.json("hola");
+})
+
+/* server.on('error', function (e) {
     console.log('Error al conectar con el servidor');
     console.log(e);
-});
+}); */
 
 //handlebars
 
@@ -80,10 +81,10 @@ app.engine('handlebars', handlebars.engine())
 app.set('views', './public')
 app.set('view engine', 'handlebars')
 
-io.on('connection', socket.connection)
+//io.on('connection', socket.connection)
 
-app.use((req, res) => {
+/* app.use((req, res) => {
     res.status(404);
     res.json(new ServiceException(-2, `Ruta ${req.originalUrl} método ${req.method} no implementada.`))
-})   
+})    */
 
