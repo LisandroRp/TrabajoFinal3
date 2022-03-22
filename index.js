@@ -50,7 +50,11 @@ app.use(session({
     //cookie: { maxAge: 60000 } // 60 segundos
 }))
 
-app.use('/api/products', productRouter);
+app.get('/', (req,res) => {
+    console.log('Home');
+    res.json("index");
+})
+/* app.use('/api/products', productRouter);
 app.use('/api/messages', messageRouter);
 app.use('/api/carts', cartRouter);
 app.use('/api/randoms', randomRouter);
@@ -59,7 +63,7 @@ app.use('/products', productWebRouter);
 app.use('/messages', messageWebRouter);
 app.use('/cart', cartWebRouter);
 app.use('/info',infoWebRouter);
-app.use('/',generalWebRouter);
+app.use('/',generalWebRouter); */
 
 const server = httpServer.listen(PORT, async () => {
     console.log(`Servidor Corriendo en el puerto: ${server.address().port}`)
