@@ -4,7 +4,7 @@ import twilio from "twilio";
 const accountSid = process.env.TWILIO_ACCOUNT_SID || "AC795bc029cf78d374baf92dbc627e149a";
 const authToken = process.env.TWILIO_AUTH_TOKEN || "e4ae702bddaa310d872f7c730233f8ab";
 const client = twilio(accountSid, authToken);
-const TEST_MAIL = process.env.ADMINEMAIL;
+const TEST_MAIL = process.env.ADMINEMAIL || "lisandrorp1997@gmail.com";
 
 /* const transporter = createTransport({
     name: 'example.com',
