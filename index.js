@@ -40,6 +40,10 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.static('./public'));
 
 
+app.get('/', (req,res) => {
+    console.log('Home');
+    res.send("index");
+})
 
 //Posicionarlo arriba de las rutas ya que se lo asigna por orden
 app.use(session({
