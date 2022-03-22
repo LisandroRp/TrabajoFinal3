@@ -27,11 +27,10 @@ import Socket from "./src/socket/Socket.js";
 
 import MongoStore from "connect-mongo"
 
-/* const options = {default: { PORT: 8080 }, alias: { p: "PORT"}}
-const args = parseArgs(process.argv.slice(2), options) */
+const options = {default: { PORT: 8080 }, alias: { p: "PORT"}}
+const args = parseArgs(process.argv.slice(2), options)
 const app = express();
-/* const PORT = args.PORT */
-const PORT = process.env.PORT || 8080
+const PORT = args.PORT
 const httpServer = new createServer(app)
 const io = new Server(httpServer)
 const socket = new Socket(io)
@@ -39,12 +38,6 @@ const socket = new Socket(io)
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static('./public'));
-
-
-app.get('/', (req,res) => {
-    console.log('Home');
-    res.json("index");
-})
 
 //Posicionarlo arriba de las rutas ya que se lo asigna por orden
 app.use(session({
@@ -65,7 +58,7 @@ app.use('/products', productWebRouter);
 app.use('/messages', messageWebRouter);
 app.use('/cart', cartWebRouter);
 app.use('/info',infoWebRouter);
-//app.use('/',generalWebRouter);
+app.use('/',generalWebRouter);
 
 const server = httpServer.listen(PORT, async () => {
     console.log(`Servidor Corriendo en el puerto: ${server.address().port}`)
