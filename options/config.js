@@ -1,6 +1,8 @@
 import 'dotenv/config'
 
 export default {
-    mongodb: process.env.MONGODB ? JSON.parse(process.env.MONGODB) : "mongodb+srv://admin:admin@cluster0.msysu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+/*     mongodb: JSON.parse(process.env.MONGODB),
+    firebase: JSON.parse(process.env.FIREBASE) */
+    mongodb:  JSON.parse({"cnxStr":"mongodb+srv://admin:admin@cluster0.msysu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority","options":{"useNewUrlParser": true,"useUnifiedTopology":true,"serverSelectionTimeoutMS":5000}}),
     //firebase: JSON.parse(process.env.FIREBASE)
 }
