@@ -42,7 +42,7 @@ app.use(express.static('./public'));
 
 app.get('/', (req,res) => {
     console.log('Home');
-    res.send("index");
+    res.json("index");
 })
 
 //Posicionarlo arriba de las rutas ya que se lo asigna por orden
@@ -64,7 +64,7 @@ app.use('/products', productWebRouter);
 app.use('/messages', messageWebRouter);
 app.use('/cart', cartWebRouter);
 app.use('/info',infoWebRouter);
-app.use('/',generalWebRouter);
+//app.use('/',generalWebRouter);
 
 const server = httpServer.listen(PORT, async () => {
     console.log(`Servidor Corriendo en el puerto: ${server.address().port}`)
