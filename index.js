@@ -28,7 +28,7 @@ import Socket from "./src/socket/Socket.js";
 import MongoStore from "connect-mongo"
 
 //const options = {default: { PORT: 8080 }, alias: { p: "PORT"}}
-const args = parseArgs(process.argv.slice(2), options)
+//const args = parseArgs(process.argv.slice(2), options)
 const app = express();
 //const PORT = args.PORT
 const PORT = 8080
