@@ -28,8 +28,7 @@ class GeneralWebController {
     }
 
     redirect =  async (req, res) => {
-        res.render('./index/LogIn')
-        //res.redirect('/LogIn');
+        res.redirect('/LogIn');
     }
 
     getLogIn =  async (req, res) => {
