@@ -10,7 +10,8 @@ class CartDao extends CartService {
         super('cart', new mongoose.Schema(
             {
                 timestamp: { type: String, required: true },
-                products: { type: [], required: false }
+                products: { type: [], required: false },
+                idUser: { type: String, required: true, unique: true },
             },
             {
                 versionKey: null
@@ -25,6 +26,16 @@ class CartDao extends CartService {
                 else { throw new ServiceException(404, "No existe el carrito con id: " + id) }
             })
             .catch((error) => { console.log(error); throw error.error ? error : new ServiceException(error.error, "No se pudo traer el carrito con id: " + id, error.message) })
+    }
+
+    async getByIdUser(idUser) {
+        console.log(idUser);
+        return super.getByIdUser(idUser)
+            .then((cart) => {
+                if (cart.length) { return renameField(asPOJO(cart[0]), '_id', 'id') }
+                else { throw new ServiceException(404, "No existe el carrito del Usuario con id: " + id) }
+            })
+            .catch((error) => { console.log(error); throw error.error ? error : new ServiceException(error.error, "No se pudo traer el carrito del Usuario con id: " + id, error.message) })
     }
 
     async getProductsByIdCart(id) {
@@ -42,7 +53,8 @@ class CartDao extends CartService {
             .catch((error) => { console.log(error); throw new ServiceException(error.error, "No se pudieron traer los productos", error.message) })
     }
 
-    async save(cart = new Cart()) {
+    async save(idUser) {
+        let cart = new Cart(idUser)
         return super.save(cart)
             .then((result) => { console.log("Producto Creado"); return renameField(asPOJO(result), '_id', 'id') })
             .catch((error) => { console.log(error); throw new ServiceException(error.error, "No se pudo crear el carrito", error.message) })
@@ -50,6 +62,18 @@ class CartDao extends CartService {
 
     async addProduct(idCart, product) {
         return this.getById(idCart)
+            .then(async (cart) => {
+                cart.products.push(product)
+                return super.update(cart)
+                    .then(() => { console.log(`Producto con id ${product.id} agregado al carrito`); return { response: `Producto con id ${product.id} agregado al carrito`, cart: cart } })
+                    .catch((error) => { console.log(error); throw new ServiceException(error.error, "No se pudo actualizar el carrito", error.message) })
+            }).catch(err => {
+                throw err
+            })
+    }
+
+    async addProduct(idUser, product) {
+        return this.getByIdUser(idUser)
             .then(async (cart) => {
                 cart.products.push(product)
                 return super.update(cart)
@@ -111,4 +135,4 @@ class CartDao extends CartService {
     }
 
 }
-export default CartDao
+export default new CartDao()

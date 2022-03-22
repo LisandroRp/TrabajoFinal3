@@ -1,4 +1,5 @@
 <div class="bg-light w-75 mx-auto mb-5 bd-example p-5 shadow rounded">
+  {{#if productList}}
   <h5 class="primary text-center">Lista de productos</h5>
   <br>
   <table class="table bg-white">
@@ -19,6 +20,11 @@
         <td><img style="width:50px;" src="{{this.photo}}" alt=""></td>
       </tr>
       {{/each}}
+      {{else}}
+      <div class="alert alert-danger" role="alert">
+        Your cart is empty
+      </div>
     </tbody>
   </table>
+  {{/if}}
 </div>

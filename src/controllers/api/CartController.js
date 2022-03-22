@@ -1,6 +1,6 @@
 import CartDao from '../../dao/CartDao.js'
 
-const cartDao = new CartDao();
+//const cartDao = new CartDao();
 
 class CartController {
 

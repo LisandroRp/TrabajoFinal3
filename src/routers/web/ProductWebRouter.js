@@ -8,6 +8,4 @@ productWebRouter.get('/', ProductController.getAll);
 
 productWebRouter.get('/product-test', createFakers);
 
-productWebRouter.get('/cart', ProductController.getCart);
-
 export { productWebRouter };

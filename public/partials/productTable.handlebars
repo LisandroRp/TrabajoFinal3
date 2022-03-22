@@ -8,6 +8,7 @@
         <th scope="col">Titulo</th>
         <th scope="col">Precio</th>
         <th scope="col">Thumbnail</th>
+        <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody id="table">
@@ -17,6 +18,14 @@
         <td>{{this.name}}</td>
         <td>${{this.price}}</td>
         <td><img style="width:50px;" src="{{this.photo}}" alt=""></td>
+        <form action="/cart/addToCart" method="post">
+            <input type="hidden" name="id" value="{{this.id}}">
+            <input type="hidden" name="name" value="{{this.name}}">
+            <input type="hidden" name="price" value="{{this.price}}">
+            <input type="hidden" name="description" value="{{this.description}}">
+            <input type="hidden" name="photo" value="{{this.photo}}">
+            <td><button type="submit" class="btn btn-primary">Add to cart</button></td>
+        </form>
       </tr>
       {{/each}}
     </tbody>

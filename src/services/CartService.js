@@ -13,6 +13,10 @@ class CartService {
         return this.coleccion.find({ '_id': id })
     }
 
+    getByIdUser(idUser) {
+        return this.coleccion.find({ 'idUser': idUser })
+    }
+
     getAll() {
         return this.coleccion.find({}).lean()
     }

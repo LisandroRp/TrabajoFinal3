@@ -12,6 +12,7 @@ import { randomRouter } from "./src/routers/api/RandomRouter.js";
 import { productWebRouter } from "./src/routers/web/ProductWebRouter.js";
 import { messageWebRouter } from "./src/routers/web/MessageWebRouter.js";
 import { generalWebRouter } from "./src/routers/web/GeneralWebRouter.js";
+import { cartWebRouter } from "./src/routers/web/cartWebRouter.js";
 import { infoWebRouter } from "./src/routers/web/InfoWebRouter.js";
 
 import express from 'express'
@@ -47,7 +48,7 @@ app.use(session({
     resave: true,
     rolling: true,
     saveUninitialized: true,
-    cookie: { maxAge: 60000 } // 60 segundos
+    //cookie: { maxAge: 60000 } // 60 segundos
 }))
 
 app.use('/api/products', productRouter);
@@ -57,6 +58,7 @@ app.use('/api/randoms', randomRouter);
 app.use('/api/',generalRouter);
 app.use('/products', productWebRouter);
 app.use('/messages', messageWebRouter);
+app.use('/cart', cartWebRouter);
 app.use('/info',infoWebRouter);
 app.use('/',generalWebRouter);
 

@@ -15,7 +15,8 @@ class UserDao extends UserService {
             age: { type: String, required: false },
             address: { type: String, required: false },
             phone: { type: String, required: false },
-            password: { type: String, required: false }
+            password: { type: String, required: false },
+            avatar: { type: String, required: false }
         },
             {
                 versionKey: false
@@ -58,8 +59,8 @@ class UserDao extends UserService {
             .catch((error) => { console.log(error); throw new ServiceException(error.error, "No se pudieron traer los Usuarios", error.message) })
     }
 
-    async save(email, username, name, address, age, phone, password) {
-        return super.save(new User(email, username, name, address, age, phone, password))
+    async save(email, username, name, address, age, phone, password, avatar) {
+        return super.save(new User(email, username, name, address, age, phone, password, avatar))
             .then((result) => { console.log("Usuario Creado"); return renameField(asPOJO(result), '_id', 'id') })
             .catch((error) => { console.log(error); throw new ServiceException(error.error, "No se pudo crear el Usuario", error.message) })
     }
