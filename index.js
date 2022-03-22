@@ -8,12 +8,12 @@ import { productRouter } from "./src/routers/api/ProductRouter.js";
 import { messageRouter } from "./src/routers/api/MessageRouter.js";
 import { cartRouter } from "./src/routers/api/CartRouter.js";
 import { randomRouter } from "./src/routers/api/RandomRouter.js"; */
-
+/* 
 import { productWebRouter } from "./src/routers/web/ProductWebRouter.js";
-import { messageWebRouter } from "./src/routers/web/MessageWebRouter.js";
+import { messageWebRouter } from "./src/routers/web/MessageWebRouter.js"; */
 import { generalWebRouter } from "./src/routers/web/GeneralWebRouter.js";
-import { cartWebRouter } from "./src/routers/web/cartWebRouter.js";
-import { infoWebRouter } from "./src/routers/web/InfoWebRouter.js";
+/* import { cartWebRouter } from "./src/routers/web/cartWebRouter.js";
+import { infoWebRouter } from "./src/routers/web/InfoWebRouter.js"; */
 
 import express from 'express'
 import handlebars from 'express-handlebars'
@@ -63,7 +63,7 @@ app.use('/messages', messageWebRouter);
 app.use('/cart', cartWebRouter);
 app.use('/info',infoWebRouter);
 */
-app.use('/',generalWebRouter); 
+app.use('/', generalWebRouter); 
 
 
 const server = httpServer.listen(PORT, async () => {
