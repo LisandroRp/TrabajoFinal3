@@ -7,4 +7,6 @@ cartWebRouter.get('/', CartWebController.getCart);
 
 cartWebRouter.post('/addToCart', CartWebController.addProduct)
 
+cartWebRouter.post('/sendOrder', CartWebController.sendOrder)
+
 export { cartWebRouter };

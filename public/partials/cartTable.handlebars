@@ -1,6 +1,17 @@
 <div class="bg-light w-75 mx-auto mb-5 bd-example p-5 shadow rounded">
   {{#if productList}}
-  <h5 class="primary text-center">Lista de productos</h5>
+  <div>
+    <h5 class="primary text-center">Lista de productos</h5>
+    <form action="/cart/sendOrder" method="post">
+      <input type="hidden" name="id" value="{{id}}">
+      {{#each productList}}
+            {{#each this}}
+                  <input type="hidden" name="products[]" value="{{this}}">
+            {{/each}}
+      {{/each}}
+      <td><button type="submit" class="btn btn-primary">Send Order</button></td>
+    </form>
+  </div>
   <br>
   <table class="table bg-white">
     <thead>

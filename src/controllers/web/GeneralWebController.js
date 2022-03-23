@@ -5,7 +5,7 @@ import UserDao from '../../dao/UserDao.js'
 import CartDao from '../../dao/CartDao.js'
 import bCrypt from "bcrypt"
 import User from '../../models/User.js'
-import { sendEmail, sendWpp } from '../../../options/Sender.js'
+import { sendEmail, sendWpp, welcomeEmail } from '../../../options/Sender.js'
 
 class GeneralWebController {
 
@@ -45,8 +45,8 @@ class GeneralWebController {
                 res.render('./messagesScreen/Error', {message: "La contraseña es Incorrecta"})
                 //res.json(new AuthenticationException(401, "La contraseña es Incorrecta"))
             else{
-                console.log(user);
                 req.session.idUser = user._id
+                req.session.name = user.name
                 req.session.username = username
                 req.session.email = user.email
                 req.session.address = user.address
@@ -77,8 +77,8 @@ class GeneralWebController {
         UserDao.verifyUsername(username).then(user => {
             if(!user){
                 UserDao.save(email, username, name, address, age, phone, this.createHash(password), avatar).then((user) => {
-                    CartDao.save(user.id).then(() => {
-                        sendEmail("Nuevo Registro", req.body).then((response) => {
+                    CartDao.save(user.id).then(async () => {
+                        sendEmail("Nuevo Registro", await welcomeEmail(req.body)).then((response) => {
                             if (response)
                                 res.render('./messagesScreen/Success', {message: "Usuario " + username + " Creado existosamente"})
                             else 

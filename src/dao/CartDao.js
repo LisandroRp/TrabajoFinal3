@@ -33,7 +33,7 @@ class CartDao extends CartService {
         return super.getByIdUser(idUser)
             .then((cart) => {
                 if (cart.length) { return renameField(asPOJO(cart[0]), '_id', 'id') }
-                else { throw new ServiceException(404, "No existe el carrito del Usuario con id: " + id) }
+                else { throw new ServiceException(404, "No existe el carrito del Usuario con id: " + idUser) }
             })
             .catch((error) => { console.log(error); throw error.error ? error : new ServiceException(error.error, "No se pudo traer el carrito del Usuario con id: " + id, error.message) })
     }
