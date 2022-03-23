@@ -1,6 +1,8 @@
 **URLs**
 
 **********************************
+Username: alan
+password: alan
 
 **GET**
 
