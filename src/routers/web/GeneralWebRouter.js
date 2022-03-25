@@ -1,7 +1,7 @@
 import express from 'express'
 import GeneralWebController from '../../controllers/web/GeneralWebController.js'
-import upload from '../../middleware/MulterMiddleware.js'
-import {auth} from '../../middleware/AuthMiddleware.js'
+/* import upload from '../../middleware/MulterMiddleware.js'
+import {auth} from '../../middleware/AuthMiddleware.js' */
 /* const GeneralController = require('../../controllers/api/GeneralController')
 const express = require('express'); */
 
@@ -9,7 +9,7 @@ const generalWebRouter = express.Router();
 
 generalWebRouter.get("/", GeneralWebController.redirect)
 
-generalWebRouter.get("/LogIn", GeneralWebController.getLogIn)
+generalWebRouter.get("/login", GeneralWebController.getLogIn)
 
 /* generalWebRouter.post("/LogIn", GeneralWebController.postLogIn)
 

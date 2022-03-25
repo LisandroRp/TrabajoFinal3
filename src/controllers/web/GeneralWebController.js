@@ -1,15 +1,14 @@
-import ProductTestDao from '../../dao/ProductTestDao.js'
+/* import ProductTestDao from '../../dao/ProductTestDao.js'
 import AuthenticationException from '../../exceptions/AuthenticationException.js'
 import MessageDao from '../../dao/MessageDao.js'
 import UserDao from '../../dao/UserDao.js'
 import CartDao from '../../dao/CartDao.js'
 import bCrypt from "bcrypt"
-import User from '../../models/User.js'
-import { sendEmail, sendWpp, welcomeEmail } from '../../../options/Sender.js'
+import { sendEmail, sendWpp, welcomeEmail } from '../../../options/Sender.js' */
 
 class GeneralWebController {
 
-    isValidUser(user, password) {
+/*     isValidUser(user, password) {
         return bCrypt.compareSync(password, user.password)
     }
     createHash(password) {
@@ -25,7 +24,7 @@ class GeneralWebController {
         catch(err) {
             res.json(err)
         }
-    }
+    } */
 
     redirect =  async (req, res) => {
         res.send("hola");
@@ -34,10 +33,10 @@ class GeneralWebController {
 
     getLogIn =  async (req, res) => {
         res.send("login");
-        res.render('./index/LogIn')
+        //res.render('./index/LogIn')
     }
 
-    postLogIn =  async (req, res) => {
+  /*   postLogIn =  async (req, res) => {
         const { username, password } = req.body
         console.log(username, password)
         UserDao.getByUsername(username).then(user => {
@@ -107,6 +106,6 @@ class GeneralWebController {
 
     getProfile = async (req, res) => {
         res.render('./profile/Profile')
-    }
+    } */
 }
 export default new GeneralWebController();
