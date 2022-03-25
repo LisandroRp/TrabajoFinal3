@@ -1,7 +1,7 @@
 import ServiceException from "./src/exceptions/ServiceException.js"
-import config from './options/config.js'
+/* import config from './options/config.js'
 import parseArgs from "minimist";
-import { fork } from 'child_process'
+import { fork } from 'child_process' */
 
 /* import { generalRouter } from "./src/routers/api/GeneralRouter.js";
 import { productRouter } from "./src/routers/api/ProductRouter.js";
@@ -88,8 +88,8 @@ app.set('view engine', 'handlebars')
 
 /* io.on('connection', socket.connection) */
 
-app.use((req, res) => {
+/* app.use((req, res) => {
     res.status(404);
     res.json(new ServiceException(-2, `Ruta ${req.originalUrl} método ${req.method} no implementada.`))
-})    
+})     */
 
