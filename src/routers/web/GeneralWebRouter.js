@@ -11,7 +11,7 @@ generalWebRouter.get("/", GeneralWebController.redirect)
 
 generalWebRouter.get("/LogIn", GeneralWebController.getLogIn)
 
-generalWebRouter.post("/chau", GeneralWebController.postLogIn)
+generalWebRouter.post("/login", GeneralWebController.postLogIn)
 
 /* generalWebRouter.post("/LogOut", GeneralWebController.postLogOut)
 
