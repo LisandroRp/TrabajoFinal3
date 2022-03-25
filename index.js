@@ -3,7 +3,7 @@ import config from './options/config.js'
 import parseArgs from "minimist";
 import { fork } from 'child_process'
 
-import { generalRouter } from "./src/routers/api/GeneralRouter.js";
+/* import { generalRouter } from "./src/routers/api/GeneralRouter.js";
 import { productRouter } from "./src/routers/api/ProductRouter.js";
 import { messageRouter } from "./src/routers/api/MessageRouter.js";
 import { cartRouter } from "./src/routers/api/CartRouter.js";
@@ -13,7 +13,7 @@ import { productWebRouter } from "./src/routers/web/ProductWebRouter.js";
 import { messageWebRouter } from "./src/routers/web/MessageWebRouter.js";
 import { generalWebRouter } from "./src/routers/web/GeneralWebRouter.js";
 import { cartWebRouter } from "./src/routers/web/cartWebRouter.js";
-import { infoWebRouter } from "./src/routers/web/InfoWebRouter.js";
+import { infoWebRouter } from "./src/routers/web/InfoWebRouter.js"; */
 
 import express from 'express'
 import handlebars from 'express-handlebars'
@@ -51,7 +51,7 @@ app.use(session({
     //cookie: { maxAge: 60000 } // 60 segundos
 }))
 
-app.use('/api/products', productRouter);
+/* app.use('/api/products', productRouter);
 app.use('/api/messages', messageRouter);
 app.use('/api/carts', cartRouter);
 app.use('/api/randoms', randomRouter);
@@ -60,7 +60,7 @@ app.use('/products', productWebRouter);
 app.use('/messages', messageWebRouter);
 app.use('/cart', cartWebRouter);
 app.use('/info',infoWebRouter);
-app.use('/',generalWebRouter);
+app.use('/',generalWebRouter); */
 
 const server = httpServer.listen(PORT, async () => {
     console.log(`Servidor Corriendo en el puerto: ${server.address().port}`)
