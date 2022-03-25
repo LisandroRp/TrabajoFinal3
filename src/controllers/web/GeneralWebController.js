@@ -35,8 +35,9 @@ class GeneralWebController {
     }
 
     postLogIn =  async (req, res) => {
-        const { username, password } = req.body
-        console.log(username, password)
+        //const { username, password } = req.body
+        //console.log(username, password)
+        res.render('./index/LogIn')
 /*         UserDao.getByUsername(username).then(user => {
             if(!this.isValidUser(user, password))
                 res.render('./messagesScreen/Error', {message: "La contraseña es Incorrecta"})
