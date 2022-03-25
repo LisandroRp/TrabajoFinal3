@@ -1,14 +1,14 @@
-import ProductTestDao from '../../dao/ProductTestDao.js'
+/* import ProductTestDao from '../../dao/ProductTestDao.js' */
 /* import AuthenticationException from '../../exceptions/AuthenticationException.js' */
-import MessageDao from '../../dao/MessageDao.js'
+/* import MessageDao from '../../dao/MessageDao.js' */
 import UserDao from '../../dao/UserDao.js'
 /* import CartDao from '../../dao/CartDao.js' */
-import bCrypt from "bcrypt"
+/* import bCrypt from "bcrypt" */
 /* import { sendEmail, sendWpp, welcomeEmail } from '../../../options/Sender.js' */
 
 class GeneralWebController {
 
-    isValidUser(user, password) {
+/*     isValidUser(user, password) {
         return bCrypt.compareSync(password, user.password)
     }
     createHash(password) {
@@ -24,7 +24,7 @@ class GeneralWebController {
         catch(err) {
             res.json(err)
         }
-    }
+    } */
 
     redirect =  async (req, res) => {
         res.redirect('/LogIn');
@@ -38,9 +38,7 @@ class GeneralWebController {
         const { username, password } = req.body
         console.log(username, password)
         UserDao.getByUsername(username).then(user => {
-            console.log(user)
-            console.log(bCrypt.compareSync(password, user.password))
-            if(!this.isValidUser(user, password))
+/*             if(!this.isValidUser(user, password))
                 res.render('./messagesScreen/Error', {message: "La contraseña es Incorrecta"})
                 //res.json(new AuthenticationException(401, "La contraseña es Incorrecta"))
             else{
@@ -54,7 +52,7 @@ class GeneralWebController {
                 req.session.phone = user.phone
                 req.session.contador = 0
                 res.redirect('/products')
-            }
+            } */
         }).catch(err => {
             console.log(err)
             res.render('./messagesScreen/Error', {message: err.message})
