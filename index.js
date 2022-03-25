@@ -1,6 +1,6 @@
-/* import ServiceException from "./src/exceptions/ServiceException.js" */
+/* import ServiceException from "./src/exceptions/ServiceException.js"
 import config from './options/config.js'
-/* import parseArgs from "minimist";
+import parseArgs from "minimist";
 import { fork } from 'child_process' */
 
 /* import { generalRouter } from "./src/routers/api/GeneralRouter.js";
@@ -17,15 +17,15 @@ import { infoWebRouter } from "./src/routers/web/InfoWebRouter.js"; */
 
 import express from 'express'
 import handlebars from 'express-handlebars'
-import session from 'express-session'
+/* import session from 'express-session'
 import sessionFile from 'session-file-store'
-sessionFile(session)
+sessionFile(session) */
 
 import { createServer } from "http"
 /* import { Server } from "socket.io"
-import Socket from "./src/socket/Socket.js"; */
+import Socket from "./src/socket/Socket.js";
 
-import MongoStore from "connect-mongo"
+import MongoStore from "connect-mongo" */
 
 /* const options = {default: { PORT: 8080 }, alias: { p: "PORT"}}
 const args = parseArgs(process.argv.slice(2), options) */
@@ -37,21 +37,21 @@ const socket = new Socket(io) */
 
 const PORT = process.env.PORT || 8080
 
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+/* app.use(express.json())
+app.use(express.urlencoded({ extended: true })) */
 app.use(express.static('./public'));
 
 
 
 //Posicionarlo arriba de las rutas ya que se lo asigna por orden
-app.use(session({
+/* app.use(session({
     store: MongoStore.create({mongoUrl: config.mongodb.cnxStr}),
     secret: 'secreto',
     resave: true,
     rolling: true,
     saveUninitialized: true,
     //cookie: { maxAge: 60000 } // 60 segundos
-}))
+})) */
 /* 
 app.use('/api/products', productRouter);
 app.use('/api/messages', messageRouter);
@@ -71,7 +71,7 @@ app.get('/', (req,res) => {
 })
 
 const server = httpServer.listen(PORT, async () => {
-    console.log(`Servidor Corriendo en el puerto: ${server.address().port}`)
+    //console.log(`Servidor Corriendo en el puerto: ${server.address().port}`)
     console.log(`Servidor Corriendo en el puerto: ${PORT}`)
 });
 
