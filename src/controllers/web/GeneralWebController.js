@@ -53,6 +53,7 @@ class GeneralWebController {
                 req.session.contador = 0
                 res.redirect('/products')
             } */
+            res.render('./index/LogIn')
         }).catch(err => {
             console.log(err)
             res.render('./messagesScreen/Error', {message: err.message})
