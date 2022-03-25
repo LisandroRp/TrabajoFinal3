@@ -6,6 +6,6 @@ const productWebRouter = express.Router();
 
 productWebRouter.get('/', ProductController.getAll);
 
-productWebRouter.get('/product-test', createFakers);
+/* productWebRouter.get('/product-test', createFakers); */
 
 export { productWebRouter };

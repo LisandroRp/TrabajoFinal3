@@ -14,7 +14,7 @@ class ProductController {
             }
         })
     }
-    getCart = async (req, res) => {
+/*     getCart = async (req, res) => {
         console.log("hoal")
         ProductDao.getAll().then(products => {
             res.render("./cart/CartMain", {productList: products, username: req.session.username})
@@ -26,6 +26,6 @@ class ProductController {
                 res.json(err)
             }
         })
-    }
+    } */
 }
 export default new ProductController();
