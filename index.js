@@ -22,18 +22,18 @@ import sessionFile from 'session-file-store'
 sessionFile(session) */
 
 import { createServer } from "http"
-/* import { Server } from "socket.io"
+import { Server } from "socket.io"
 import Socket from "./src/socket/Socket.js";
 
-import MongoStore from "connect-mongo" */
+/* import MongoStore from "connect-mongo" */
 
 /* const options = {default: { PORT: 8080 }, alias: { p: "PORT"}}
 const args = parseArgs(process.argv.slice(2), options) */
 const app = express();
 /* const PORT = args.PORT */
 const httpServer = new createServer(app)
-/* const io = new Server(httpServer)
-const socket = new Socket(io) */
+const io = new Server(httpServer)
+const socket = new Socket(io)
 
 const PORT = process.env.PORT || 8080
 
@@ -86,10 +86,10 @@ app.engine('handlebars', handlebars.engine())
 app.set('views', './public')
 app.set('view engine', 'handlebars')
 
-/* io.on('connection', socket.connection) */
+io.on('connection', socket.connection)
 
-/* app.use((req, res) => {
+app.use((req, res) => {
     res.status(404);
     res.json(new ServiceException(-2, `Ruta ${req.originalUrl} método ${req.method} no implementada.`))
-})    */
+})    
 
