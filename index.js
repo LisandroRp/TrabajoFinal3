@@ -11,7 +11,7 @@ import { randomRouter } from "./src/routers/api/RandomRouter.js"; */
 /* 
 import { productWebRouter } from "./src/routers/web/ProductWebRouter.js";
 import { messageWebRouter } from "./src/routers/web/MessageWebRouter.js"; */
-/* import { generalWebRouter } from "./src/routers/web/GeneralWebRouter.js"; */
+import { generalWebRouter } from "./src/routers/web/GeneralWebRouter.js";
 /* import { cartWebRouter } from "./src/routers/web/cartWebRouter.js";
 import { infoWebRouter } from "./src/routers/web/InfoWebRouter.js"; */
 
@@ -63,7 +63,7 @@ app.use('/messages', messageWebRouter);
 app.use('/cart', cartWebRouter);
 app.use('/info',infoWebRouter);
 */
-//app.use('/', generalWebRouter); 
+app.use('/', generalWebRouter); 
 
 app.get('/', (req,res) => {
     console.log('Home');
