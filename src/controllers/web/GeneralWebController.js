@@ -37,7 +37,7 @@ class GeneralWebController {
     postLogIn =  async (req, res) => {
         const { username, password } = req.body
         console.log(username, password)
-        UserDao.getByUsername(username).then(user => {
+/*         UserDao.getByUsername(username).then(user => {
             if(!this.isValidUser(user, password))
                 res.render('./messagesScreen/Error', {message: "La contraseña es Incorrecta"})
                 //res.json(new AuthenticationException(401, "La contraseña es Incorrecta"))
@@ -57,7 +57,7 @@ class GeneralWebController {
             console.log(err)
             res.render('./messagesScreen/Error', {message: err.message})
             //res.json(new AuthenticationException(401, "El usuario no existe"))
-        })
+        }) */
     }
 /*
     postLogOut =  async (req, res) => {
