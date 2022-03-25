@@ -1,14 +1,14 @@
-/* import ProductTestDao from '../../dao/ProductTestDao.js'
-import AuthenticationException from '../../exceptions/AuthenticationException.js'
+import ProductTestDao from '../../dao/ProductTestDao.js'
+/* import AuthenticationException from '../../exceptions/AuthenticationException.js' */
 import MessageDao from '../../dao/MessageDao.js'
 import UserDao from '../../dao/UserDao.js'
-import CartDao from '../../dao/CartDao.js'
+/* import CartDao from '../../dao/CartDao.js' */
 import bCrypt from "bcrypt"
-import { sendEmail, sendWpp, welcomeEmail } from '../../../options/Sender.js' */
+/* import { sendEmail, sendWpp, welcomeEmail } from '../../../options/Sender.js' */
 
 class GeneralWebController {
 
-/*     isValidUser(user, password) {
+    isValidUser(user, password) {
         return bCrypt.compareSync(password, user.password)
     }
     createHash(password) {
@@ -24,7 +24,7 @@ class GeneralWebController {
         catch(err) {
             res.json(err)
         }
-    } */
+    }
 
     redirect =  async (req, res) => {
         res.redirect('/LogIn');
@@ -34,7 +34,7 @@ class GeneralWebController {
         res.render('./index/LogIn')
     }
 
-  /*   postLogIn =  async (req, res) => {
+    postLogIn =  async (req, res) => {
         const { username, password } = req.body
         console.log(username, password)
         UserDao.getByUsername(username).then(user => {
@@ -61,7 +61,7 @@ class GeneralWebController {
             //res.json(new AuthenticationException(401, "El usuario no existe"))
         })
     }
-
+/*
     postLogOut =  async (req, res) => {
         res.render('./index/LogOut', {username: req.session.username})
     }
