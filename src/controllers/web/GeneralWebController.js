@@ -31,8 +31,7 @@ class GeneralWebController {
     }
 
     getLogIn =  async (req, res) => {
-        res.send("login");
-        //res.render('./index/LogIn')
+        res.render('./index/LogIn')
     }
 
   /*   postLogIn =  async (req, res) => {

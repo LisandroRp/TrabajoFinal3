@@ -9,7 +9,7 @@ const generalWebRouter = express.Router();
 
 generalWebRouter.get("/", GeneralWebController.redirect)
 
-generalWebRouter.get("/login", GeneralWebController.getLogIn)
+generalWebRouter.get("/LogIn", GeneralWebController.getLogIn)
 
 /* generalWebRouter.post("/LogIn", GeneralWebController.postLogIn)
 
