@@ -1,10 +1,11 @@
 import ProductTestDao from '../../dao/ProductTestDao.js'
-/* import AuthenticationException from '../../exceptions/AuthenticationException.js' */
+import AuthenticationException from '../../exceptions/AuthenticationException.js'
 import MessageDao from '../../dao/MessageDao.js'
 import UserDao from '../../dao/UserDao.js'
-/* import CartDao from '../../dao/CartDao.js' */
+import CartDao from '../../dao/CartDao.js'
 import bCrypt from "bcrypt"
-/* import { sendEmail, sendWpp, welcomeEmail } from '../../../options/Sender.js' */
+import User from '../../models/User.js'
+import { sendEmail, sendWpp, welcomeEmail } from '../../../options/Sender.js'
 
 class GeneralWebController {
 
@@ -37,7 +38,9 @@ class GeneralWebController {
     postLogIn =  async (req, res) => {
         const { username, password } = req.body
         console.log(username, password)
-/*         UserDao.getByUsername(username).then(user => {
+        UserDao.getByUsername(username).then(user => {
+            console.log(user)
+            console.log(bCrypt.compareSync(password, user.password))
             if(!this.isValidUser(user, password))
                 res.render('./messagesScreen/Error', {message: "La contraseña es Incorrecta"})
                 //res.json(new AuthenticationException(401, "La contraseña es Incorrecta"))
@@ -57,9 +60,9 @@ class GeneralWebController {
             console.log(err)
             res.render('./messagesScreen/Error', {message: err.message})
             //res.json(new AuthenticationException(401, "El usuario no existe"))
-        }) */
+        })
     }
-/*
+
     postLogOut =  async (req, res) => {
         res.render('./index/LogOut', {username: req.session.username})
     }
@@ -102,6 +105,6 @@ class GeneralWebController {
 
     getProfile = async (req, res) => {
         res.render('./profile/Profile')
-    } */
+    }
 }
 export default new GeneralWebController();
