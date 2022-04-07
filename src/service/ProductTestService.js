@@ -1,11 +1,11 @@
 
-import ProductService from "../services/ProductService.js"
+import ProductDao from "../dao/ProductDao.js"
 import ServiceException from "../exceptions/ServiceException.js"
 import { asPOJO, renameField } from '../utils/ObjectUtils.js'
 import mongoose from 'mongoose'
 import Product from "../models/Product.js"
 
-class ProductTestDao extends ProductService {
+class ProductTestService extends ProductDao {
 
     constructor() {
         super('productTest', new mongoose.Schema({
@@ -72,4 +72,4 @@ class ProductTestDao extends ProductService {
     }
 }
 
-export default new ProductTestDao()
+export default new ProductTestService()

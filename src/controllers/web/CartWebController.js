@@ -1,10 +1,10 @@
-import CartDao from '../../dao/CartDao.js'
+import CartService from '../../service/CartService.js'
 import { sendEmail, sendWpp, orderEmail } from '../../../options/Sender.js'
 
 class ProductController {
 
     getCart = async (req, res) => {
-        CartDao.getByIdUser(req.session.idUser).then(cart => {
+        CartService.getByIdUser(req.session.idUser).then(cart => {
             console.log(cart.products)
             res.render("./cart/CartMain", {productList: cart.products, username: req.session.username, id: cart.id})
         }).catch(err => {
@@ -17,7 +17,7 @@ class ProductController {
         })
     }
     addProduct = async (req, res) => {
-        CartDao.addProduct(req.session.idUser, req.body).then((response) => {
+        CartService.addProduct(req.session.idUser, req.body).then((response) => {
             console.log(response)
             res.render('./messagesScreen/Success', {message: response.response, idUser: req.session.idUser})
         }).catch(err => {

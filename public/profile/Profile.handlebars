@@ -15,6 +15,7 @@
     <div class="alert alert-dark d-flex align-items-center justify-content-between" role="alert">
         {{#if username}}
         <a class="btn btn-secondary" href="/products/">Products</a>
+        <a class="btn btn-secondary" href="/chat/">Group Chat</a>
         <a class="btn btn-secondary" href="/cart">Cart</a>
         <a class="btn btn-secondary" href="/profile">Profile</a>
         <form action="/logout" method="post">
@@ -28,7 +29,7 @@
     </div>
     <div class="container">
         <div class="mr-auto bg-light p-5 shadow">
-            <h5 class="primary text-center">Lista de productos</h5>
+            <h5 class="primary text-center">Profile</h5>
             <b>Username:</b> {{username}}
             <br>
             <b>Email:</b> {{email}}

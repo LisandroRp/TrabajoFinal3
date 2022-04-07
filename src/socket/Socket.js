@@ -1,8 +1,6 @@
-import MessageDao from "../dao/MessageDao.js";
-import ProductDao from "../dao/ProductDao.js";
+import MessageService from "../service/MessageService.js";
+import ProductService from "../service/ProductService.js";
 import Message from "../models/Message.js"
-import { normalice, denormalice } from '../normalizers/MessageNormalizer.js'
-
 
 var usuarios = 0
 
@@ -24,7 +22,7 @@ class Socket {
 
     newMessage = async (messageData) => {
         let message = new Message(messageData)
-        MessageDao.save(message).then(() => {
+        MessageService.save(message).then(() => {
             this.io.sockets.emit("newMessage", message)
         }).catch(err => {
             console.error(err)
@@ -33,7 +31,7 @@ class Socket {
     }
 
     newProduct = async (product) => {
-        ProductDao.save(product).then((newProduct) => {
+        ProductService.save(product).then((newProduct) => {
             this.io.sockets.emit("newProduct", newProduct)
         }).catch(err => {
             console.error(err)
@@ -49,7 +47,7 @@ class Socket {
             console.log(message)
              console.log(Object.keys(normalicee).length) 
     
-            MessageDao.save(message.entities.message[0]).then(() => {
+            MessageService.save(message.entities.message[0]).then(() => {
                 this.io.sockets.emit("newMessage", message)
             }).catch(err => {
                 throw err

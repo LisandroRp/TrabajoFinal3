@@ -1,9 +1,9 @@
-import MessageDao from '../../dao/MessageDao.js'
+import MessageService from '../../service/MessageService.js'
 
 class MessageController {
 
     getAll = async (req, res) => {
-        MessageDao.getAll().then(products => {
+        MessageService.getAll().then(products => {
             res.json(products)
         }).catch(err => {
             res.status(err.error)
@@ -12,7 +12,7 @@ class MessageController {
     }
 
     getById = async (req, res) => {
-        MessageDao.getById(req.params.id).then(product => {
+        MessageService.getById(req.params.id).then(product => {
             res.json(product)
         }).catch(err => {
             res.status(err.error)
@@ -21,7 +21,7 @@ class MessageController {
     }
 
     save = async (req, res) => {
-       MessageDao.save(req.body).then(response => {
+       MessageService.save(req.body).then(response => {
             res.json(response)
         }).catch(err => {
             res.status(err.error)
@@ -30,7 +30,7 @@ class MessageController {
     }
 
     update = (req, res) => {
-        MessageDao.update(req.body).then((response) => {
+        MessageService.update(req.body).then((response) => {
             res.json(response)
         }).catch(err => {
             res.status(err.error)
@@ -39,7 +39,7 @@ class MessageController {
     }
 
     deleteById = (req, res) => {
-        MessageDao.deleteById(req.params.id).then((response) => {
+        MessageService.deleteById(req.params.id).then((response) => {
             res.json(response)
         }).catch(err => {
             res.status(err.error)
@@ -48,7 +48,7 @@ class MessageController {
     }
 
     deleteAll = (req, res) => {
-        MessageDao.deleteAll().then((response) => {
+        MessageService.deleteAll().then((response) => {
             res.json(response)
         }).catch(err => {
             res.status(err.error)

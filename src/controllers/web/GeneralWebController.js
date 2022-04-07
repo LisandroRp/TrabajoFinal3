@@ -1,8 +1,8 @@
-import ProductTestDao from '../../dao/ProductTestDao.js'
+import ProductTestService from '../../service/ProductTestService.js'
 import AuthenticationException from '../../exceptions/AuthenticationException.js'
-import MessageDao from '../../dao/MessageDao.js'
-import UserDao from '../../dao/UserDao.js'
-import CartDao from '../../dao/CartDao.js'
+import MessageService from '../../service/MessageService.js'
+import UserService from '../../service/UserService.js'
+import CartService from '../../service/CartService.js'
 import bCrypt from "bcrypt"
 import User from '../../models/User.js'
 import { sendEmail, sendWpp, welcomeEmail } from '../../../options/Sender.js'
@@ -18,8 +18,8 @@ class GeneralWebController {
 
     getAll =  async (req, res) => {
         try {
-            let productList = await ProductTestDao.getAll()
-            let messages = await MessageDao.getAll()
+            let productList = await ProductTestService.getAll()
+            let messages = await MessageService.getAll()
             res.render('index', { productList, messages })
         }
         catch(err) {
@@ -38,7 +38,7 @@ class GeneralWebController {
     postLogIn =  async (req, res) => {
         const { username, password } = req.body
         console.log(username, password)
-        UserDao.getByUsername(username).then(user => {
+        UserService.getByUsername(username).then(user => {
             console.log(user)
             console.log(bCrypt.compareSync(password, user.password))
             if(!this.isValidUser(user, password))
@@ -74,10 +74,10 @@ class GeneralWebController {
     postRegister =  async (req, res) => {
         const { email, username, name, address, age, phone, password } = req.body
         const avatar = req.file ? req.file.filename : "";
-        UserDao.verifyUsername(username).then(user => {
+        UserService.verifyUsername(username).then(user => {
             if(!user){
-                UserDao.save(email, username, name, address, age, phone, this.createHash(password), avatar).then((user) => {
-                    CartDao.save(user.id).then(async () => {
+                UserService.save(email, username, name, address, age, phone, this.createHash(password), avatar).then((user) => {
+                    CartService.save(user.id).then(async () => {
                         sendEmail("Nuevo Registro", await welcomeEmail(req.body)).then((response) => {
                             if (response)
                                 res.render('./messagesScreen/Success', {message: "Usuario " + username + " Creado existosamente"})

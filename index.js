@@ -1,16 +1,13 @@
 import ServiceException from "./src/exceptions/ServiceException.js"
 import config from './options/config.js'
 import parseArgs from "minimist";
-import { fork } from 'child_process'
 
-import { generalRouter } from "./src/routers/api/GeneralRouter.js";
 import { productRouter } from "./src/routers/api/ProductRouter.js";
 import { messageRouter } from "./src/routers/api/MessageRouter.js";
 import { cartRouter } from "./src/routers/api/CartRouter.js";
-import { randomRouter } from "./src/routers/api/RandomRouter.js";
 
 import { productWebRouter } from "./src/routers/web/ProductWebRouter.js";
-import { messageWebRouter } from "./src/routers/web/MessageWebRouter.js";
+import { chatWebRouter } from "./src/routers/web/ChatWebRouter.js";
 import { generalWebRouter } from "./src/routers/web/GeneralWebRouter.js";
 import { cartWebRouter } from "./src/routers/web/cartWebRouter.js";
 import { infoWebRouter } from "./src/routers/web/InfoWebRouter.js";
@@ -25,6 +22,7 @@ import { createServer } from "http"
 import { Server } from "socket.io"
 import Socket from "./src/socket/Socket.js";
 
+import mongoose from 'mongoose'
 import MongoStore from "connect-mongo"
 
 const options = {default: { PORT: 8080 }, alias: { p: "PORT"}}
@@ -39,7 +37,11 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static('./public'));
 
-
+mongoose.connect(config.mongodb.cnxStr, config.mongodb.options).then(() => {
+    console.log("Mongo Atlas Conneted")
+}).catch(err => {
+    console.log(err)
+})
 
 //Posicionarlo arriba de las rutas ya que se lo asigna por orden
 app.use(session({
@@ -54,10 +56,8 @@ app.use(session({
 app.use('/api/products', productRouter);
 app.use('/api/messages', messageRouter);
 app.use('/api/carts', cartRouter);
-app.use('/api/randoms', randomRouter);
-app.use('/api/',generalRouter);
 app.use('/products', productWebRouter);
-app.use('/messages', messageWebRouter);
+app.use('/chat', chatWebRouter);
 app.use('/cart', cartWebRouter);
 app.use('/info',infoWebRouter);
 app.use('/',generalWebRouter);

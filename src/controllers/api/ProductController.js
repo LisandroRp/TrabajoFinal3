@@ -1,9 +1,9 @@
-import ProductDao from '../../dao/ProductDao.js'
+import ProductService from '../../service/ProductService.js'
 
 class ProductController {
 
     getAll = async (req, res) => {
-        ProductDao.getAll().then(products => {
+        ProductService.getAll().then(products => {
             res.json(products)
         }).catch(err => {
             res.status(err.error)
@@ -12,7 +12,7 @@ class ProductController {
     }
 
     getById = async (req, res) => {
-        ProductDao.getById(req.params.id).then(product => {
+        ProductService.getById(req.params.id).then(product => {
             res.json(product)
         }).catch(err => {
             res.status(err.error)
@@ -21,7 +21,7 @@ class ProductController {
     }
 
     post = async (req, res) => {
-        ProductDao.save(req.body).then(response => {
+        ProductService.save(req.body).then(response => {
             res.json(response)
         }).catch(err => {
             res.status(err.error)
@@ -30,7 +30,7 @@ class ProductController {
     }
 
     update = (req, res) => {
-        ProductDao.update(req.body).then((response) => {
+        ProductService.update(req.body).then((response) => {
             res.json(response)
         }).catch(err => {
             res.status(err.error)
@@ -39,7 +39,7 @@ class ProductController {
     }
 
     deleteById = (req, res) => {
-        ProductDao.deleteById(req.params.id).then((response) => {
+        ProductService.deleteById(req.params.id).then((response) => {
             res.json(response)
         }).catch(err => {
             res.status(err.error)
@@ -48,7 +48,7 @@ class ProductController {
     }
 
     deleteAll = (req, res) => {
-        ProductDao.deleteAll().then((response) => {
+        ProductService.deleteAll().then((response) => {
             res.json(response)
         }).catch(err => {
             res.status(err.error)

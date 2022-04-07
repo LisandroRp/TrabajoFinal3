@@ -1,11 +1,11 @@
-import CartDao from '../../dao/CartDao.js'
+import CartService from '../../service/CartService.js'
 
-//const cartDao = new CartDao();
+//const CartService = new CartService();
 
 class CartController {
 
     getAll = async (req, res) => {
-        cartDao.getAll().then(carts => {
+        CartService.getAll().then(carts => {
             res.json(carts)
         }).catch(err => {
             res.status(err.error)
@@ -14,7 +14,7 @@ class CartController {
     }
 
     getById  = async (req, res) => {
-        cartDao.getById(req.params.id).then(product => {
+        CartService.getById(req.params.id).then(product => {
             res.json(product)
         }).catch(err => {
             res.status(err.error)
@@ -23,7 +23,7 @@ class CartController {
     }
 
     save = async (req, res) => {
-        cartDao.save().then((response) => {
+        CartService.save().then((response) => {
             res.json(response)
         }).catch(err => {
             res.status(err.error)
@@ -32,7 +32,7 @@ class CartController {
     }
 
     getProductsByIdCarrito = async (req, res) => {
-        cartDao.getProductsByIdCart(req.params.id).then((response) => {
+        CartService.getProductsByIdCart(req.params.id).then((response) => {
             res.json(response)
         }).catch(err => {
             res.status(err.error)
@@ -41,7 +41,7 @@ class CartController {
     }
 
     addProduct = async (req, res) => {
-        cartDao.addProduct(req.params.id, req.body.product).then((response) => {
+        CartService.addProduct(req.params.id, req.body.product).then((response) => {
             res.json(response)
         }).catch(err => {
             res.status(err.error)
@@ -50,7 +50,7 @@ class CartController {
     }
 
     deleteProductFromCart = async (req, res) => {
-        cartDao.deleteProductFromCart(req.params.id, req.params.id_prod).then((response) => {
+        CartService.deleteProductFromCart(req.params.id, req.params.id_prod).then((response) => {
             res.json(response)
         }).catch(err => {
             res.status(err.error)
@@ -59,7 +59,7 @@ class CartController {
     }
 
     deleteAllProductsByIdCart = async (req, res) => {
-        cartDao.deleteAllProductsByIdCart(req.params.id).then((response) => {
+        CartService.deleteAllProductsByIdCart(req.params.id).then((response) => {
             res.json(response)
         }).catch(err => {
             res.status(err.error)
@@ -68,7 +68,7 @@ class CartController {
     }
 
     deleteById = async (req, res) => {
-        cartDao.deleteById(req.params.id).then((response) => {
+        CartService.deleteById(req.params.id).then((response) => {
             res.json(response)
         }).catch(err => {
             res.status(err.error)
@@ -77,7 +77,7 @@ class CartController {
     }
 
     deleteAll = async (req, res) => {
-        cartDao.deleteAll().then((response) => {
+        CartService.deleteAll().then((response) => {
             res.json(response)
         }).catch(err => {
             res.status(err.error)

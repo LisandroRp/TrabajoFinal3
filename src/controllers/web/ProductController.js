@@ -1,9 +1,9 @@
-import ProductDao from '../../dao/ProductDao.js'
+import ProductService from '../../service/ProductService.js'
 
 class ProductController {
 
     getAll = async (req, res) => {
-        ProductDao.getAll().then(products => {
+        ProductService.getAll().then(products => {
             res.render("./products/ProductMain", {productList: products, username: req.session.username})
         }).catch(err => {
             if(err.error == 404)
@@ -16,7 +16,7 @@ class ProductController {
     }
     getCart = async (req, res) => {
         console.log("hoal")
-        ProductDao.getAll().then(products => {
+        ProductService.getAll().then(products => {
             res.render("./cart/CartMain", {productList: products, username: req.session.username})
         }).catch(err => {
             if(err.error == 404)

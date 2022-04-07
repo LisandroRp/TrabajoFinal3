@@ -1,42 +1,33 @@
-
-import MessageService from "../services/MessageService.js"
-import ServiceException from "../exceptions/ServiceException.js"
-import { asPOJO, renameField } from '../utils/ObjectUtils.js'
 import mongoose from 'mongoose'
-import Product from "../models/Product.js"
 
-class MessageDao extends MessageService {
-    constructor() {
-        super('message', new mongoose.Schema({
-            author: { type: { 
-                id: { type: String, required: false },
-                firstName: { type: String, required: false },
-                lastName: { type: String, required: false },
-                age: { type: String, required: false },
-                alias: { type: String, required: false },
-                avatar: { type: String, required: false },
-            }, required: false, default: {}},
-            id: { type: String, required: false },
-            text: { type: String, required: false },
-            date: { type: String, required: false, default: new Date().toLocaleString()}
-        },{ versionKey: false }))
+class MessageService {
+
+    constructor(nombreColeccion, esquema) {
+        this.coleccion = mongoose.model(nombreColeccion, esquema, nombreColeccion)
     }
 
-    async getAll() {
-        return super.getAll()
-            .then((messages) => {
-                if (messages.length) { return messages.map(message => renameField(asPOJO(message), '_id', 'id')) }
-                else { throw new ServiceException(404, "No existen los mensajes", "No existen los mensajes") }
-            })
-            .catch((error) => { console.log(error); throw new ServiceException(error.error, "No se pudieron traer los productos", error.message) })
+    getById(id) {
+        return this.coleccion.find({ '_id': id })
     }
 
-    async save(message) {
-        return super.save(message)
-            .then((result) => { console.log("Producto Creado"); return renameField(asPOJO(result), '_id', 'id') })
-            .catch((error) => { console.log(error); throw new ServiceException(error.error, "No se pudo crear el producto", error.message) })
+    getAll() {
+        return this.coleccion.find({}).lean()
     }
 
+    save(product) {
+        return this.coleccion.create(product)
+    }
+
+    update(product) {
+        return this.coleccion.replaceOne({ '_id': product.id }, product)
+    }
+
+    deleteById(id) {
+        return this.coleccion.deleteOne({ '_id': id })
+    }
+
+    deleteAll() {
+        return this.coleccion.deleteMany({})
+    }
 }
-
-export default new MessageDao
+export default MessageService
